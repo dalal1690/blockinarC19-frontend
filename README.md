@@ -1,2 +1,2 @@
 # blockinarC19-frontend
-BlockinarC19 challenge development
+BlockinarC19 frontend challenge development
