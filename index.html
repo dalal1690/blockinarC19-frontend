@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="Covid-19 visualizer">
+  <meta name="keywords" content="covid19, blokinar, challenge">
+  <meta name="author" content="DMS">
+  <title>Blockinar C-19</title>
+  <link rel="shortcut icon" href="images/favicon.png" type="images/x-icon">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/mdb.min.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+  <!-- Google Fonts Lato -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+</head>
+<!--Other styles-->
+<style>
+  .section-title {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h6.section-title-font {
+    color: #000000    
+  }
+
+  body {
+    background: rgb(63, 251, 239);
+    background: radial-gradient(circle, rgba(63, 251, 239, 0.908000700280112) 0%, rgba(1, 0, 29, 1) 100%);
+  }
+</style>
+
+<body>
+  <!-- Header -->
+  <header>
+    <nav>
+      <div>
+        <a class="navbar" style="background-color:#01001D">
+          <img src="images/blokinarC19.png" alt="Blockinar C19" width="250" height="60" />
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Container for the sections -->
+  <div class="container d-flex align-items-center justify-content-center vh-100 vw-100">
+    <!-- Organizaed in a row -->
+    <div class="row">
+      <!-- Row divided in 3 columns -->
+      <div class="col-sm-4 col-xs-12 ">
+        <div class="bg-image hover-overlay ripple shadow-1-strong rounded mb-4">
+          <picture>
+            <source srcset="images/infectados_mundo.jpg" type="image/webp">
+            <img src="images/infectados_mundo.jpg" class="w-100" alt="Infectados Mundialmente">
+            <div class="section-title">
+              <h6 class="section-title-font text-center">Reporte de Infectados Mundialmente</h6>
+            </div>
+          </picture>
+          <a href="infectadosMundialmente.html" target="_blank">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+          </a>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12 ">
+        <div class="bg-image hover-overlay ripple shadow-1-strong rounded mb-4">
+          <picture>
+            <source srcset="images/infectados_pais.jpg" type="image/webp">
+            <img src="images/infectados_mundo.jpg" class="w-100" alt="Infectados Mundialmente">
+            <div class="section-title text-center">
+              <h6 class="section-title-font">Ver Infectados por País</h6>
+            </div>
+          </picture>
+          <a href="infectadosPorPais.html" target="_blank">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+          </a>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12 ">
+        <div class="bg-image hover-overlay ripple shadow-1-strong rounded mb-4">
+          <picture>
+            <source srcset="images/nuevo_infectado.jpg " type="image/webp">
+            <img src="images/nuevo_infectado.jpg" class="w-100" alt="Agregar Nuevo Infectado">
+            <div class="section-title">
+              <h6 class="section-title-font text-center">Agregar Nuevos Contagiados</h6>
+            </div>
+          </picture>
+          <a href="nuevoInfectado.html" target="_blank">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+    integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
+  </script>
+  <script src="js/app.js"></script>
+</body>
+<!-- Footer -->
+<footer class="align-images-center justify-content-center" style="background-color:#01001D">
+  <!-- Footer container -->
+  <div class="container p-4 mx-auto text-center">
+    <img src="images/OMS.png" alt="Organinazion Mundial de la Salud" width="110" height="100" />
+    <img src="images/blokinar.PNG" alt="Blokinar" width="200" height="20" />
+  </div>
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+    © 2021 Copyright:
+    <a>BlokinarC19</a>
+  </div>
+</footer>
+
+</html>

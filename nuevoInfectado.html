@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="Covid-19 visualizer">
+  <meta name="keywords" content="covid19, blokinar, challenge">
+  <meta name="author" content="DMS">
+  <title>Blockinar C-19</title>
+  <link rel="shortcut icon" href="images/favicon.png" type="images/x-icon">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/mdb.min.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    input[type=text],
+    [type=number],
+    select {
+      width: 50%;
+      padding: 10px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 1px solid lightgrey;
+      border-radius: 20px;
+    }
+
+    input[type=date] {
+      width: 20%;
+      padding: 10px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 1px solid lightgrey;
+      border-radius: 20px;
+    }
+
+    .registerbtn {
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+  </style>
+  <script type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+    integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
+  </script>
+  <script src="app.js"></script>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <nav>
+      <div>
+        <a class="navbar" style="background-color:#01001D">
+          <img src="images/blokinarC19.png" alt="Blockinar C19" width="250" height="60" />
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <form action="http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/infected" class="my-5" id="infectedForm" method="post">
+    <div class="container">
+      <h2>Registro de Nuevo Contagiado</h2>
+      <p>Para añadir un nuevo contagiado por favor complete los siguientes campos.</p>
+      <hr>
+
+      <!--First Name field-->
+      <label for="first_name"><b>Nombre</b></label> <br>
+      <input type="text" placeholder="Ingrese su nombre" name="first_name" id="first_name" required> <br>
+
+      <!--Last Name field-->
+      <label for="last_name"><b>Apellidos</b></label> <br>
+      <input type="text" placeholder="Ingrese su apellido" name="last_name" id="last_name" required> <br>
+
+      <!--Age field-->
+      <label for="age"><b>Edad</b></label> <br>
+      <!--In order to apply the maxlenght we add the following javascript-->
+      <input
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        type="number" maxlength="3" placeholder="Ingrese su edad" name="age" id="age"> <br>
+
+      <!--Gender field-->
+      <label for="gender"><b>Género</b></label> <br>
+      <input type="radio" name="gender" value="true" class="my-2"> <label for="female">Femenino</label>
+      <input type="radio" name="gender" value="false"> <label for="male">Masculino</label> <br>
+
+      <!--Country field-->
+      <label for="country"><b>Seleccione el país donde se encuentra</b></label><br>
+      <select id="country" name="country">
+        <option value="Argentina">Argentina</option>
+        <option value="Bhutan">Bhutan</option>
+        <option value="China">China</option>
+        <option value="Ireland">Ireland</option>
+        <option value="Italia">Italia</option>
+        <option value="Moldova">Moldova</option>
+        <option value="Moroco">Moroco</option>
+        <option value="Saint Barthelemy">Saint Barthelemy</option>
+        <option value="Turkey">Turkey</option>
+      </select>
+      <br>
+
+      <!--Person status field-->
+      <label for="live"><b>Estado de la persona</b></label> <br>
+      <input type="radio" name="live" value="true" class="my-2"> <label for="live">Vivo</label>
+      <input type="radio" name="live" value="false"> <label for="de">Fallecido</label> <br>
+
+      <!--Infect Date field-->
+      <label for="infect_date"><b>Fecha del contagio</b></label><br>
+      <input type="date" id="infect_date" name="infect_date"><br>
+
+      <hr>
+      <button type="submit" class="registerbtn" onclick="infectedCounter()">Registrar</button>
+    </div>
+
+
+  </form>
+
+  <script>
+    var clicks = 10;
+
+    document.getElementById("clicks").innerHTML = clicks;
+
+    function infectedCounter() {
+      clicks += 1;
+      document.getElementById("clicks").innerHTML = clicks;
+      $('.infected-counter').addClass("counted");
+    }
+  </script>
+
+</body>
+<!-- Footer -->
+<footer class="align-images-center justify-content-center" style="background-color:#01001D">
+  <!-- Footer container -->
+  <div class="container p-4 mx-auto text-center">
+    <img src="images/OMS.png" alt="Organinazion Mundial de la Salud" width="110" height="100" />
+    <img src="images/blokinar.PNG" alt="Blokinar" width="200" height="20" />
+  </div>
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+    © 2021 Copyright:
+    <a>BlokinarC19</a>
+  </div>
+</footer>
+
+</html>

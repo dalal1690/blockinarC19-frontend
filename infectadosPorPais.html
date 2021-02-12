@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="Covid-19 visualizer">
+    <meta name="keywords" content="covid19, blokinar, challenge">
+    <meta name="author" content="DMS">
+    <title>Blockinar C-19</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="images/x-icon">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!--Formarts and libraries for tables-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+    </script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
+    </script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js">
+    </script>
+
+
+</head>
+<style>
+    h5.table-title {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        color: #134b7c;
+        text-align: center;
+    }
+
+    thead.thead-dark {
+        background: #01001D;
+        color: #dfe0e1;
+    }
+</style>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div>
+                <a class="navbar" style="background-color:#01001D">
+                    <img src="images/blokinarC19.png" alt="Blockinar C19" width="250" height="60" />
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!--Space for the pie chart-->
+    <div id="piechart_div" style="width:800px; height:500px;" class="container align-items-center px-3"></div>
+    <!-- Table Container -->
+    <div class="container align-items-center p-4">
+        <div>
+            <h5 class="table-title text-center p-4"><strong> Tabla de Contagiados por Pais por Covid-19</strong></h5>
+        </div>
+
+        <table class="table table-striped table-hover" id="ContagiadosPorPais">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Pais</th>
+                    <th scope="col">Contagiados</th>
+                </tr>
+            </thead>
+            <tbody id="jsonData">
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        //TO GET DATA FROM API FOR THE TABLE
+        $.getJSON('http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/countries',
+            function (json) {
+                var tr;
+                for (var i = 0; i < json.length; i++) {
+                    tr = $('<tr/>');
+                    tr.append("<td>" + json[i].name + "</td>");
+                    tr.append("<td>" + json[i].infected + "</td>");
+                    $('#jsonData').append(tr);
+                }
+            });
+        $('#jsonData').DataTable();
+    </script>
+
+    <script>
+        //TO GET DATA FROM API FOR THE CHART
+        var url2 = "http://5e693ec6d426c00016b7ec9e.mockapi.io/CV1/countries";
+        $.getJSON(url2,
+            function (data) {
+                console.log(data)
+                charts(data, "Piechart"); // Pie Charts
+            })
+    </script>
+    <script>
+        //CHART DRAWING FUCTION
+        function charts(data, ChartType) {
+            var c = ChartType;
+            var jsonData = data;
+            google.load("visualization", "1", {
+                packages: ["corechart"],
+                callback: drawVisualization
+            });
+
+            function drawVisualization() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Country');
+                data.addColumn('number', 'Infected');
+                $.each(jsonData, function (i, jsonData) {
+                    var value = jsonData.infected;
+                    var name = jsonData.name;
+                    data.addRows([
+                        [name, value]
+                    ]);
+                });
+
+                var options = {
+                    title: "Contagiados por País por Covid-19",
+                    animation: {
+                        duration: 3000,
+                        easing: 'out',
+                        startup: true
+                    },
+                    colorAxis: {
+                        colors: ['#54C492', '#cc0000']
+                    },
+                    datalessRegionColor: '#dedede',
+                    defaultColor: '#dedede'
+                };
+
+                var chart;
+                if (c == "Piechart") // Curve Chart
+                    chart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+
+                chart.draw(data, options);
+            }
+        }
+    </script>
+
+
+</body>
+<!-- Footer -->
+<footer class="align-images-center justify-content-center" style="background-color:#01001D">
+    <!-- Footer container -->
+    <div class="container p-4 mx-auto text-center">
+        <img src="images/OMS.png" alt="Organinazion Mundial de la Salud" width="110" height="100" />
+        <img src="images/blokinar.PNG" alt="Blokinar" width="200" height="20" />
+    </div>
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2021 Copyright:
+        <a>BlokinarC19</a>
+    </div>
+</footer>
+
+</html>
